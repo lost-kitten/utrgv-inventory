@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>UTRGV Classroom</title>
+        <link rel="stylesheet" href="https://cdn.pannellum.org/2.3/pannellum.css"/>
+  <script type="text/javascript" src="https://cdn.pannellum.org/2.3/pannellum.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+  .floating-box {
+    display: inline;
+    margin: auto;
+}
+  .key{
+    display:block;
+    float: left;
+
+
+  }
+  .description{
+    float: right;
+    width: 50%;
+    margin-right: 5px;
+    margin-top: 0px;
+  }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+tr:nth-child(even){background-color: #f2f2f2
+}
+
+.modalDialog {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+/*         -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in; */
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+
+    .modalDialog:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+
+    .modalDialog > div {
+        max-width: 800px;
+        max-height: 600px;
+        position: relative;
+        margin: 5% auto;
+        padding: 5px 10px 5px 10px;
+        border-radius: 10px;
+        background: #fff;
+
+    }
+
+    .close {
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 22px;
+        position: absolute;
+        right: -10px;
+        text-align: center;
+        top: -10px;
+        width: 20px;
+        text-decoration: none;
+        font-weight: bold;
+/*         -webkit-border-radius: 12px;
+        -moz-border-radius: 12px; */
+        border-radius: 10px;
+/*         -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000; */
+        box-shadow: 1px 1px 2px #000;
+    }
+
+    .close:hover { background: #00d9ff;
+    }
+    #tvquant, #tvbrand {
+        display:none;
+    }
+    #itvavailable:checked ~ #tvquant, #tvbrand {
+        display:block;
+    }
+
+    .ui.table.dataTable thead th {
+  cursor: pointer;
+  white-space: nowrap;
+  border-left: 1px solid rgba(34, 36, 38, 0.15);
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.ui.table.dataTable thead th:first-child {
+  border-left: none;
+}
+
+.ui.table.dataTable thead .sorting,
+.ui.table.dataTable thead .sorting_asc ,
+.ui.table.dataTable thead .sorting_desc ,
+.ui.table.dataTable thead .sorting_asc_disabled ,
+.ui.table.dataTable thead .sorting_desc_disabled,
+.ui.table.dataTable thead .sorting:hover,
+.ui.table.dataTable thead .sorting_asc:hover ,
+.ui.table.dataTable thead .sorting_desc:hover ,
+.ui.table.dataTable thead .sorting_asc_disabled:hover ,
+.ui.table.dataTable thead .sorting_desc_disabled:hover  {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ui.table.dataTable thead th:after {
+  display: none;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  content: '';
+  height: 1em;
+  width: auto;
+  opacity: 0.8;
+  margin: 0em 0em 0em 0.5em;
+  font-family: 'Icons';
+}
+
+.ui.table.dataTable thead th.sorting_asc:after {
+  /*content: '\f0d8';*/
+  content: '\f160';
+}
+
+.ui.table.dataTable thead th.sorting_desc:after {
+  /*content: '\f0d7';*/
+  content: '\f161';
+}
+
+.ui.table.dataTable thead th.sorting:after {
+    content: '\f0dc';
+    opacity: 0.2;
+}
+
+/* Hover */
+
+.ui.table.dataTable th.disabled:hover {
+  cursor: auto;
+  color: rgba(40, 40, 40, 0.3);
+}
+
+.ui.table.dataTable thead th:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* Sorted */
+
+.ui.table.dataTable thead .sorting_asc ,
+.ui.table.dataTable thead .sorting_desc ,
+.ui.table.dataTable thead .sorting_asc_disabled ,
+.ui.table.dataTable thead .sorting_desc_disabled {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.95);
+}
+
+.ui.table.dataTable thead .sorting:after ,
+.ui.table.dataTable thead .sorting_asc:after ,
+.ui.table.dataTable thead .sorting_desc:after ,
+.ui.table.dataTable thead .sorting_asc_disabled:after ,
+.ui.table.dataTable thead .sorting_desc_disabled:after {
+  display: inline-block;
+}
+
+/* Sorted Hover */
+
+.ui.table.dataTable thead .sorting_asc:hover ,
+.ui.table.dataTable thead .sorting_desc:hover ,
+.ui.table.dataTable thead .sorting_asc_disabled:hover ,
+.ui.table.dataTable thead .sorting_desc_disabled:hover  {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.95);
+}
+
+
+.dataTables_length select {
+   background: #fff none repeat scroll 0 0;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-radius: 0.285714rem;
+    box-shadow: none;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+    display: inline-block;
+     line-height: 1.2142em;
+    min-height:   0.714286em;
+
+    outline: 0 none;
+    padding: 0.3em;
+    transform: rotateZ(0deg);
+    transition: box-shadow 0.1s ease 0s, width 0.1s ease 0s;
+    white-space: normal;
+    word-wrap: break-word;
+	 }
+
+  .dataTables_wrapper .dataTables_filter {
+	text-align: right;
+
+    color: rgba(0, 0, 0, 0.87);
+    display: inline-flex;
+    position: relative;
+   }
+
+   .dataTables_wrapper .dataTables_filter input {
+	  margin-left: 0.5em;
+   }
+
+  .dataTables_wrapper .dataTables_info {
+	clear: both;
+	padding-top: 0.755em;
+   }
+
+.dataTables_filter input {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-radius: 0.285714rem;
+    box-shadow: none;
+    color: rgba(0, 0, 0, 0.87);
+    flex: 1 0 auto;
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+	height:1em;
+    margin: 0;
+    max-width: 100%;
+    outline: 0 none;
+    padding: .4em;
+    text-align: left;
+    transition: background-color 0.1s ease 0s, box-shadow 0.1s ease 0s, border-color 0.1s ease 0s;
+}
+</style>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">UTRGV</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Login</a></li>
+                <li><a href="/">Signup</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+</nav>

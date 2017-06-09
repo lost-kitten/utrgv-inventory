@@ -1,0 +1,1092 @@
+<% include partials/header %>
+<head>
+   <link rel="stylesheet" href="https://cdn.pannellum.org/2.3/pannellum.css"/>
+  <script type="text/javascript" src="https://cdn.pannellum.org/2.3/pannellum.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js">
+</head>
+<div class="ui container">
+<h1>Create New Classroom</h1>
+<div style="margin: 0 auto; ">
+    <form class="ui form" action="/eclassrooms" method="POST">
+    <div class="field form-group" style="width:30%;">
+        <input type="text" name="number" placeholder="number" required="true"><br>
+      </div>
+      <div>
+        <div class="campus" style="display:inline-block;">
+   <select name="campus" id="campus">
+      <option selected="selected">Select Campus</option>
+      <option value="BROWNSVILLE">BROWNSVILLE</option>
+      <option value="EDINBURG">EDINBURG</option>
+      <option value="HARLINGEN">HARLINGEN</option>
+      <option value="MCALLEN">MCALLEN</option>
+      <option value="RGC">RGC</option>
+   </select>
+</div>
+<div id="bbuilding" style="display:none;">
+   <select name="building">
+    <option disabled selected>Select Building</option>
+      <option name="building" value="BBRHB">BBRHB</option>
+      <option name="building" value="BCRTZ">BCRTZ</option>
+      <option name="building" value="BEIDM">BEIDM</option>
+      <option name="building" value="BGYMN">BGYMN</option>
+      <option name="building" value="BLHSB">BLHSB</option>
+      <option name="building" value="BLIBR">BLIBR</option>
+      <option name="building" value="BMAIN">BMAIN</option>
+      <option name="building" value="Mary Rose Cardenas Hall South">Mary Rose Cardenas Hall South</option>
+      <option name="building" value="BRUST">BRUST</option>
+      <option name="building" value="BSABH">BSABH</option>
+      <option name="building" value="BSETB">BSETB</option>
+      <option name="building" value="BSTUN">BSTUN</option>
+      <option name="building" value="BSTAC">BSTAC</option>
+   </select>
+</div>
+
+<div id="ebuilding" style="display:none;">
+   <select name="building">
+      <option disabled selected>Select Building</option>
+      <option name="building" value="EACSB">EACSB</option>
+      <option name="building" value="ECOBE">ECOBE</option>
+      <option name="building" value="EEDUC">EEDUC</option>
+      <option name="building"value="EENGR">EENGR</option>
+      <option name="building"value="EHABE">EHABE</option>
+      <option name="building"value="EHABW">EHABW</option>
+      <option name="building"value="EHPE1">EHPE1</option>
+      <option name="building"value="EHPE2">EHPE2</option>
+      <option name="building"value="ELABN">ELABN</option>
+      <option name="building"value="ELABS">ELABS</option>
+      <option name="building"value="ELIBR">ELIBR</option>
+      <option name="building"value="EMAGC">EMAGC</option>
+      <option name="building"value="EMEBL">EMEBL</option>
+      <option name="building"value="EPACB">EPACB</option>
+      <option name="building"value="EPACC">EPACC</option>
+      <option name="building"value="EPHYS">EPHYS</option>
+      <option name="building"value="ESCNE">ESCNE</option>
+      <option name="building"value="ESTAC">ESTAC</option>
+      <option name="building"value="ESTUN">ESTUN</option>
+      <option name="building"value="ESWOT">ESWOT</option>
+   </select>
+</div>
+<div id="hbuilding" style="display:none;">
+   <select name="building">
+   <option disabled selected>Select Building</option>
+        <option value="HCEBL">HCEBL</option>
+      <option  value="HCBEL2">HCEBL2</option>
+   </select>
+</div>
+<div id="mbuilding" style="display:none;">
+  <option disabled selected>Select Building</option>
+   <option value="McALLEN">MCALLEN</option>
+   </select>
+</div>
+<div id="rbuilding" style="display:none;">
+  <option disabled selected>Select Building</option>
+   <option value="RGC">RGC</option>
+   </select>
+</div>
+<script>
+$(document).ready(function() {
+      $('#campus').bind('change', function(e) {
+         if ($('#campus').val() == 'BROWNSVILLE') {
+            $('#bbuilding').show();
+            $("#bbuilding").css({
+               display: "inline-block"
+            });
+            $('#ebuilding, #mbuilding, #hbuilding, #rbuilding').hide();
+         } else if ($('#campus').val() == 'EDINBURG') {
+         $('#ebuilding').show();
+          $("#ebuilding").css({
+               display: "inline-block"
+            });
+            $('#bbuilding, #mbuilding, #hbuilding, #rbuilding').hide();
+
+         } else if ($('#campus').val() == 'HARLINGEN') {
+         $('#hbuilding').show();
+          $("#hbuilding").css({
+               display: "inline-block"
+            });
+            $('#bbuilding, #ebuilding, #mbuilding, #rbuilding').hide();
+
+         } else if ($('#campus').val() == 'MCALLEN') {
+         $('#mbuilding').show();
+          $("#mbuilding").css({
+               display: "inline-block"
+            });
+            $('#bbuilding, #ebuilding, #hbuilding, #rbuilding').hide();
+
+         }  else if ($('#campus').val() == 'RGC') {
+         $('#rbuilding').show();
+          $("#rbuilding").css({
+               display: "inline-block"
+            });
+            $('#bbuilding, #mbuilding, #hbuilding, #ebuilding').hide();
+
+         }
+      }).trigger('change');
+   });
+</script>
+      </div>
+      <br>
+         <div class="field form-group" style="width:30%;">
+       <input  type="text" name="room" placeholder="room">
+       <select name="roomType" placeholder="Type of Room ">
+         <option disabled selected value="">Type of Room</option>
+          <option  value="CLASSROOM">CLASSROOM</option>
+          <option  value="CONFERENCE ROOM">CONFERENCE ROOM</option>
+       </select>
+      <input type="text" name="capacity" placeholder="capacity">
+      <input type="text" name="firstview" placeholder="URL of 360 Photo 1">
+      <input type="text" name="secondview" placeholder="URL of 360 Photo 2">
+      </div>
+      <br>
+      <div class="field form-group" style="width:30%;">
+           Inventory Available <input type="radio" id="radio_yes" name="inventory" value="Yes" /> Yes
+<input type="radio" id="radio_no" name="inventory" value="No"
+       checked="checked" /> No
+          </div>
+       <div>
+         <div>
+           <fieldset class="cp_Avail">
+             <label for="cpAvail">Control Panel Avail?</label>
+             <p>Yes
+     <input type="radio" name="cpAvail" id="cpAvail" value="on" onClick="getResults()"> No
+     <input type="radio" name="cpAvail" id="cpAvail2" value="">
+           </fieldset>
+           <div class="cpAvailtext">
+           <fieldset class="controlpanelavail">
+             <table class="ui celled structured table">
+               <thead>
+                 <tr>
+                   <th>Control Panel Info</th>
+                 </tr>
+                 <tr>
+                   <th rowspan="2">#</th>
+                   <th rowspan="2">TYPE</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>
+                    <input type="text" name="cpQuant" placeholder="#" />
+                     <br></td>
+                   <td><select name="cpType">
+                     <option disabled selected value="" placeholder="Select Control Panel"></option>
+                      <option value="https://i.imgur.com/NcMRRPV.png">Touch Screen Panel</option>
+                      <option value="http://i.imgur.com/XPK8lKx.png">Press Panel</option>
+                      <option value="https://i.imgur.com/ZiPIzO4.png">BPC Panel</option>
+                      <option value="CRESTRON MPC-M5">MP-CM5</option>
+                      <option value="EXTRON MLC 104 IP Plus">EXTRON MLC 104 IP Plus</option>
+                   </select>
+                   <br></td>
+                 </tr>
+               </tbody>
+             </table>
+           </fieldset>
+         </div>
+         </div>
+       <script>
+       $(document).ready(function () {
+    $(".cpAvailtext").hide();
+    $("#cpAvail").click(function () {   $(".cpAvailtext").show();
+    });
+    $("#cpAvail2").click(function () {
+        $(".cpAvailtext").hide();
+    });
+});
+       </script>
+       </div>
+       <br>
+       <div>
+         <div>
+           <fieldset class="microphone_Avail">
+             <label for="microphoneAvail">Microphone Available?</label>
+           <p>Yes
+               <input type="radio" name="microphoneAvail" id="microphoneAvail" value="on" onClick="getResults()"> No
+               <input type="radio" name="microphoneAvail" id="microphoneAvail2" value="off">
+           <div class="microphonetext">
+                     <table>
+                     <tbody>
+                       <td>
+                         Microphone:<input type="checkbox" name="microphoneImage" value="https://i.imgur.com/Dly7qJJ.png"/> <br>
+                         <input type="text" name="micQuant" placeholder="Microphone Quant"><br>
+                         <input type="text" name="micBrand" placeholder="Microphone Brand"><br>
+                       </td>
+                     </tbody>
+                 </table>
+           </div>
+         </fieldset>
+         </div>
+         <script>
+         $(document).ready(function () {
+             $(".microphonetext").hide();
+             $("#microphoneAvail").click(function () {
+                 $(".microphonetext").show();
+             });
+             $("#microphoneAvail2").click(function () {
+                 $(".microphonetext").hide();
+             });
+         });
+         </script>
+       </div>
+       <br>
+      <div>
+        <div>
+        <fieldset class="workstation_Avail">
+       <label for="workstationAvail">Workstation Available?</label>
+       <p>Yes
+    <input type="radio" name="workstationAvail" id="workstationAvail" value="on" onClick="getResults()"> No
+    <input type="radio" name="workstationAvail" id="workstationAvail2" value="off">
+   </fieldset>
+
+
+
+
+<div class="workstationAvailtext">
+   <fieldset class="answer1">
+   <table class="ui celled structured table">
+     <thead>
+              <tr>
+                <th>Workstation Info</th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+              </tr>
+              <tr>
+                <th rowspan="2">Montior</th>
+                <th rowspan="2">Tower</th>
+                <th rowspan="2">Accessories</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Workstation:<input type="checkbox" name="workstationImage" value="http://i.imgur.com/H8M7Cvq.png"/> <br>
+                  Number of  Monitors:<input type="text" name="monitorQuant" placeholder="monitor #"><br>
+                  Brand: <input type="text" name="monitorBrand" placeholder="monitor Brand"><br>
+                  Asset Tag(Monitor):<input type="text" name="monitorTag" placeholder="monitorTag"><br>
+
+                </td>
+                <td>
+                  Quantity of Workstation Towers<input type="text" name="towerQuant" placeholder="towerQuant"><br>
+                  Asset Tag (Tower)<input type="text" name="towerTag" placeholder="towerTag"><br>
+                </td>
+                <td>
+                Mouse Quantity: <input type="text" name="mouseQuant" placeholder="mouseQuant"><br>
+                Keyboard Quantity<input type="text" name="keyboardQuant" placeholder="keyboardQuant"><br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+   </fieldset>
+ </div>
+      </div>
+<script>
+$(document).ready(function () {
+    $(".workstationAvailtext").hide();
+    $("#workstationAvail").click(function () {   $(".workstationAvailtext").show();
+    });
+    $("#workstationAvail2").click(function () {
+        $(".workstationAvailtext").hide();
+    });
+});
+</script>
+          <br>
+          <div>
+            <fieldset class="projector_Avail">
+       <label for="projectorAvail">Projector Avail?</label>
+       <p>Yes
+    <input type="radio" name="projectorAvail" id="projectorAvail" value="on" onClick="getResults()"> No
+    <input type="radio" name="projectorAvail" id="projectorAvail2" value="off">
+   </fieldset>
+<div class="projectorAvailtext">
+   <fieldset>
+   <table class="ui celled structured table">
+        <thead>
+          <tr>
+            <th>Projector Info</th>
+          </tr>
+          <tr>
+            <th rowspan="2">#</th>
+            <th rowspan="2">Brand</th>
+            <th rowspan="2">Asset Tag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                <br>
+              Projector:<input type="checkbox" name="projectorImage" value="https://i.imgur.com/xErBYfN.png"/><br>
+            <input type="text" name="projQuant" placeholder="#"><br>
+
+            </td>
+            <td><select name="projBrand1" placeholder="brand">
+                <option disabled selected value="" placeholder="Select Projector Brand"></option>
+                <option value="Epson Lite 97">Epson Lite 97</option>
+                 <option  value="Epson Power Lite 1945W">Epson Power Lite 1945W</option>
+                 <option value="Epson Power Lite Pro G5950">Epson Power Lite Pro G5950</option>
+                 <option  value="Epson Bright Link 485Wi">Epson Bright Link 485Wi</option>
+                 <option  value="Epson Power Lite 6110i">Epson Power Lite 6110i</option>
+                 <option value="Panasonic PT-FW430">Panasonic PT-FW430</option>
+              </select><br>
+            <td><input type="text" name="projTag1Tag" placeholder="Tag"><br></td>
+          </tr>
+        </tbody>
+      </table>
+   </fieldset>
+ </div>
+ </div>
+ <script>
+ $(document).ready(function () {
+     $(".projectorAvailtext").hide();
+     $("#projectorAvail").click(function () {   $(".projectorAvailtext").show();
+     });
+     $("#projectorAvail2").click(function () {
+         $(".projectorAvailtext").hide();
+     });
+ });
+ </script>
+    </div>
+    <br>
+    <div>
+      <div>
+
+        <fieldset class="more_Projector">
+          More than 1 Projector in Classroom?
+          <p>Yes
+        <input type="radio" name="moreProjector" id="moreProjector" value="on" onClick="getResults()"> No
+        <input type="radio" name="moreProjector" id="moreProjector2" value="off">
+        </fieldset>
+        <div class="moreProjectortext">
+        <fieldset>
+          <table class="ui celled structured table">
+            <thead>
+              <tr>
+                <th>Projector Info</th>
+              </tr>
+              <tr>
+                <th rowspan="2">Brand</th>
+                <th rowspan="2">Asset Tag</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><select name="projBrand2" placeholder="brand">
+                    <option disabled selected value="" placeholder="Select Projector Brand"></option>
+<option value="Epson Lite 97">Epson Lite 97</option>
+                     <option  value="Epson Power Lite 1945W">Epson Power Lite 1945W</option>
+                     <option  value="Epson Bright Link 485Wi">Epson Bright Link 485Wi</option>
+                     <option  value="Epson Power Lite 6110i">Epson Power Lite 6110i</option>
+                     <option value="Panasonic PT-FW430">Panasonic PT-FW430</option>
+
+                  </select><br></td>
+                <td><input type="text" name="projTag2Tag" placeholder="Tag"><br></td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
+      </div>
+<script>
+$(document).ready(function () {
+    $(".moreProjectortext").hide();
+    $("#moreProjector").click(function () {   $(".moreProjectortext").show();
+    });
+    $("#moreProjector2").click(function () {
+        $(".moreProjectortext").hide();
+    });
+});
+</script>
+</div>
+<br>
+<div>
+  <div>
+    <fieldset class="projector_ScreenAvail">
+      <label for="projectorScreenAvail">Projector Screen Available?</label>
+      <p>Yes
+        <input type="radio" name="projectorScreenAvail" id="projectorScreenAvail" value="on" onClick="getResults()"> No
+        <input type="radio" name="projectorScreenAvail" id="projectorScreenAvail2" value="off">
+    </fieldset>
+    <div class="projectorScreenAvailtext">
+    <fieldset>
+      <table class="ui celled structured table">
+        <thead>
+          <tr>
+            <th>Screen Info</th>
+          </tr>
+          <tr>
+            <th rowspan="2">#</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" name="projScreenQuant" placeholder="#"><br></td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </div>
+  </div>
+<script>
+$(document).ready(function () {
+    $(".projectorScreenAvailtext").hide();
+    $("#projectorScreenAvail").click(function () {
+        $(".projectorScreenAvailtext").show();
+    });
+    $("#projectorScreenAvail2").click(function () {
+        $(".projectorScreenAvailtext").hide();
+    });
+});
+</script>
+</div>
+<br>
+<div>
+  <div>
+    <fieldset class="document_CameraAvail">
+      Document Camera Available?
+      <p>Yes
+    <input type="radio" name="doccamAvail" id="doccamAvail" value="on" onClick="getResults()"> No
+    <input type="radio" name="doccamAvail" id="doccamAvail2" value="off">
+    </fieldset>
+    <div class="doccamtext">
+    <fieldset>
+      <table class="ui celled structured table">
+        <thead>
+          <tr>
+            <th>Document Camera Info</th>
+          </tr>
+          <tr>
+            <th rowspan="2">#</th>
+            <th rowspan="2">Brand</th>
+            <th rowspan="2">Tag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                <br>
+              Document Camera:<input type="checkbox" name="doccamImage" value="https://i.imgur.com/k9ZOzdK.png"/><br>
+              <input type="text" name="doccamQuant" placeholder="#"><br></td>
+            <td>  <select name="doccamBrand1" placeholder="brand">
+                <option disabled selected value="" value="Select Document Camera"></option>
+                 <option  value="Samsung SDP-860">Samsung SDP-860</option>
+                 <option  value="Epson ELDPC05">Epson ELDPC05</option>
+                 <option  value="Elmo HV-5100XG Document Camera">Elmo HV-5100XG Document Camera</option>
+                 <option value="AverVision PL50">AverVision PL50</option>
+                 <option value="910 Lamp Changer 3M">910 Lamp Changer 3M</option>
+              </select><br>
+            </td>
+            <td><input type="text" name="doccamTag1" placeholder="Asset Tag"><br></td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+  </div>
+<script>
+$(document).ready(function () {
+    $(".doccamtext").hide();
+    $("#doccamAvail").click(function () {
+        $(".doccamtext").show();
+    });
+    $("#doccamAvail2").click(function () {
+        $(".doccamtext").hide();
+    });
+});
+</script>
+</div>
+</div>
+<br>
+<div>
+  <div>
+    <fieldset>
+      <label for="moreDoccam">More than 1 Document Camera?</label>
+      <p>Yes
+    <input type="radio" name="moreDoccam" id="moreDoccam" value="on" onClick="getResults()"> No
+    <input type="radio" name="moreDoccam" id="moreDoccam2" value="off">
+    <div class="text">
+      <fieldset>
+      <table class="ui celled structured table">
+        <thead>
+          <tr>
+            <th>Document Camera Info</th>
+          </tr>
+          <tr>
+            <th rowspan="2">Brand</th>
+            <th rowspan="2">Tag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <select name="doccamBrand2" placeholder="brand">
+                <option disabled selected value=""></option>
+                 <option  value="Samsung SDP-860">Samsung SDP-860</option>
+                 <option  value="Epson ELDPC05">Epson ELDPC05</option>
+                 <option  value="Elmo HV-5100XG Document Camera">Elmo HV-5100XG Document Camera</option>
+                 <option value="AverVision PL50">AverVision PL50</option>
+              </select>
+              <br></td>
+            <td><input type="text" name="doccamTag2" placeholder="Asset Tag"><br></td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+</div>
+  </div>
+<script>
+$(document).ready(function () {
+    $(".text").hide();
+    $("#moreDoccam").click(function () {
+        $(".text").show();
+    });
+    $("#moreDoccam2").click(function () {
+        $(".text").hide();
+    });
+});
+</script>
+</div>
+<br>
+<div>
+  <div>
+    <fieldset>
+      <label>ITV Classroom Capable?</label>
+      <p>Yes
+      <input type="radio" name="itvAvail" id="itvAvail" value="on" onClick="getResults()"> No
+      <input type="radio" name="itvAvail" id="itvAvail2" value="off">
+  <div class="itvtext">
+          <table class="ui celled structured table">
+          <thead>
+            <tr>
+              <th>ITV Info</th>
+            </tr>
+            <tr>
+              <th rowspan="2">ITV Available</th>
+              <th rowspan="2">ITV Monitors</th>
+              <th rowspan="2">ITV Cameras</th>
+              <th rowspan="2">ITV Accessories</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="ui fluid container segment">
+                <table>
+
+                  <tbody>
+                    <tr>
+                      <td>
+                    ITV AVAILABLE<input type="checkbox" name="itvImage" value="http://i.imgur.com/xrk0N8E.png"/><br>
+                  </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+            <td>
+                <div class="ui fluid container segment">
+                <table>
+                  <thead>
+                    <tr>
+                      <th rowspan="2">Quantity</th>
+                      <th rowspan="2">Brand1</th>
+                      <th rowspan="2">Brand2(If different brands)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><input type="text" name="itvMonitorquant" placeholder="#"></td><br>
+                      <td><input type="text" name="itvMonitorbrand1" placeholder="brand"></td><br>
+                      <td><input type="text" name="itvMonitorbrand2" placeholder="brand"></td><br>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+                </td>
+                <td>
+                  <div class="ui fluid container segment">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th rowspan="2">Quantity</th>
+                        <th rowspan="2">Brand1</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="text" name="itvCameraQuant" placeholder="#"></td><br>
+                        <td><input type="text" name="itvCameraBrand" placeholder="brand"></td><br>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                  </td>
+                  <td>
+                      <div class="ui fluid container segment">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Microphone</th>
+                          <th>Speakers</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <input type="text" name="itvMicquant" placeholder="#"><br>
+                            <input type="text" name="itvMicbrand" placeholder="brand"><br>
+                          </td>
+                          <br>
+                          <td>
+                            <input type="text" name="itvSpeakerquant" placeholder="#"><br>
+                            <input type="text" name="itvSpeakerbrand" placeholder="brand">
+                          </td><br>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+                </td>
+            </tr>
+          </tbody>
+        </table
+  </div>
+</fieldset>
+  </div>
+<script>
+$(document).ready(function () {
+    $(".itvtext").hide();
+    $("#itvAvail").click(function () {
+        $(".itvtext").show();
+    });
+    $("#itvAvail2").click(function () {
+        $(".itvtext").hide();
+    });
+});
+</script>
+</div>
+<br>
+<div>
+  <div>
+    <fieldset>
+    Printer Available in Classroom?
+    <p>Yes
+        <input type="radio" name="printerAvail" id="printerAvail" value="on" onClick="getResults()"> No
+        <input type="radio" name="printerAvail" id="printerAvail2" value="off">
+    <div class="printertext">
+              <table>
+              <tbody>
+                <td>
+                  Printer Image:<input type="checkbox" name="printerImage" value="https://i.imgur.com/QFNOOOs.png"/><br>
+                <input type="text" name="printerQuant" placeholder="#">
+                <input type="text" name="printerBrand1" placeholder="Brand">
+                <input type="text" name="printerTag1" placeholder="Asset Tag">
+              </td>
+              </tbody>
+          </table>
+    </div>
+  </fieldset>
+  </div>
+  <script>
+  $(document).ready(function () {
+      $(".printertext").hide();
+      $("#printerAvail").click(function () {
+          $(".printertext").show();
+      });
+      $("#printerAvail2").click(function () {
+          $(".printertext").hide();
+      });
+  });
+  </script>
+</div>
+<br>
+<div>
+  <div>
+    <fieldset>
+    More than 1 Printer?
+    <p>Yes
+    <input type="radio" name="morePrinter" id="morePrinter" value="on" onClick="getResults()"> No
+    <input type="radio" name="morePrinter" id="morePrinter2" value="off">
+<div class="moreprinttext">
+         <table>
+          <tbody>
+            <td>
+            <input type="text" name="printerBrand2" placeholder="Brand">
+            <input type="text" name="printerTag2" placeholder="Asset Tag">
+          </td>
+          </tbody>
+      </table>
+</div>
+</fieldset>
+  </div>
+  <script>
+  $(document).ready(function () {
+      $(".moreprinttext").hide();
+      $("#morePrinter").click(function () {
+          $(".moreprinttext").show();
+      });
+      $("#morePrinter2").click(function () {
+          $(".moreprinttext").hide();
+      });
+  });
+  </script>
+  <br>
+
+  <div>
+    <fieldset>
+    <p>Computer Lab Available</p>
+    <p>Yes
+      <input type="radio" name="computerLabAvail" id="computerLabAvail" value="on" onClick="getResults()"> No
+      <input type="radio" name="computerLabAvail" id="computerLabAvail2" value="off">
+  <div class="comlabtext">
+      <table class="ui celled structured table">
+            <thead>
+              <tr>
+  <th>Lab Information</th>
+              </tr>
+              <tr>
+                <th>Lab Type</th>
+                <th># of Computer Stations</th>
+                <th># of Computer Station Monitors</th>
+                <th># of Computer Station Towers</th>
+                <th># of Computer Station Keyboards</th>
+                <th># of Computer Station Mice</th>
+                <th># of Computer Station Headphones</th>
+              </tr>
+            </thead>
+          </tr>
+              <tbody>
+                <td>
+                  Computer Image:<input type="checkbox" name="comlabImage" value="https://i.imgur.com/58lMz8M.png"/><br>
+                  <input type="radio" name="labtype" value="Laptop"> Laptop<br>
+                  <input type="radio" name="labtype" value="Desktop"> Desktop<br>
+              </td>
+              <td>
+                <input type="text" name="stationQuant" placeholder="#">
+              </td>
+              <td>
+                <input type="text" name="labMonQuant" placeholder="#">
+              </td>
+              <td>
+                <input type="text" name="labTowerQuant" placeholder="#">
+                <td>
+                  <input type="text" name="labKeyQuant" placeholder="#">
+                </td>
+              </td>
+              <td>
+                <input type="text" name="labMouseQuant" placeholder="#">
+              </td>
+              <td>
+                <input type="text" name="labHeadphoneQuant" placeholder="#">
+              </td>
+              </tbody>
+          </table>
+        </fieldset>
+  </div>
+    <script>
+    $(document).ready(function () {
+        $(".comlabtext").hide();
+        $("#computerLabAvail").click(function () {
+            $(".comlabtext").show();
+        });
+        $("#computerLabAvail2").click(function () {
+            $(".comlabtext").hide();
+        });
+    });
+    </script>
+</div>
+
+
+<div>
+  <fieldset>
+  <p>SmartBoard Available?</p>
+  <p>Yes
+    <input type="radio" name="smartboardAvail" id="smartboardAvail" value="on" onClick="getResults()"> No
+    <input type="radio" name="smartboardAvail" id="smartboardAvail2" value="off">
+<div class="smartboardtext">
+    <table class="ui celled structured table">
+          <thead>
+            <tr>
+<th>SmartBoard Info</th>
+            </tr>
+            <tr>
+              <th>Quantity</th>
+              <th>Brand</th>
+            </tr>
+          </thead>
+        </tr>
+            <tbody>
+              <td>
+                <input type="text" name="smartboardQuant" placeholder="#">
+              </td>
+              <td>
+                Smartboard Image:<input type="checkbox" name="smartboardImage" value="https://i.imgur.com/dwzbLa2.png"/><br>
+                <input type="radio" name="smartboardBrand" value="SMART Board SBX880 and SMART Projector">SMART Board SBX880 and SMART Projector<br>
+                <input type="radio" name="smartboardBrand" value="HITACHI Starboard">HITACHI Starboard<br>
+            </td>
+            </tbody>
+        </table>
+      </fieldset>
+</div>
+  <script>
+  $(document).ready(function () {
+      $(".smartboardtext").hide();
+      $("#smartboardAvail").click(function () {
+          $(".smartboardtext").show();
+      });
+      $("#smartboardAvail2").click(function () {
+          $(".smartboardtext").hide();
+      });
+  });
+  </script>
+</div>
+<br>
+
+<div>
+  <fieldset>
+  <p>Music Equipment Avail?</p>
+  <p>Yes
+    <input type="radio" name="musicItemsAvail" id="musicItemsAvail" value="on" onClick="getResults()"> No
+    <input type="radio" name="musicItemsAvail" id="musicItemsAvail2" value="off">
+<div class="musicItemstext">
+    <table class="ui celled structured table">
+          <thead>
+            <tr>
+<th>Music Equipment Information</th>
+            </tr>
+            <tr>
+              <th>Amplifer Brand</th>
+              <th>Amplifer Quant</th>
+              <th>Speaker Brand</th>
+              <th>Speaker Quant</th>
+            </tr>
+          </thead>
+        </tr>
+            <tbody>
+              <td>
+                <input type="text" name="amplifierBrand" placeholder="Brand">
+              </td>
+              <td>
+                <input type="text" name="amplifierQuant" placeholder="#">
+              </td>
+              <td>
+                <input type="text" name="musicSpeakerBrand" placeholder="Brand">
+                <td>
+                  <input type="text" name="musicSpeakerQuant" placeholder="#">
+                </td>
+              </td>
+            </tbody>
+        </table>
+      </fieldset>
+</div>
+  <script>
+  $(document).ready(function () {
+      $(".musicItemstext").hide();
+      $("#musicItemsAvail").click(function () {
+          $(".musicItemstext").show();
+      });
+      $("#musicItemsAvail2").click(function () {
+          $(".musicItemstext").hide();
+      });
+  });
+  </script>
+</div>
+  <br>
+<div>
+  <fieldset>
+  <p>Viewing System?</p>
+  <p>Yes
+    <input type="radio" name="viewingSystemAvail" id="viewingSystemAvail" value="on" onClick="getResults()"> No
+    <input type="radio" name="viewingSystemAvail" id="viewingSystemAvail2" value="off">
+<div class="viewingSystemAvailtext">
+    <table class="ui celled structured table">
+          <thead>
+            <tr>
+<th>Viewing System Info</th>
+            </tr>
+            <tr>
+              <th>Viewing TV Brand</th>
+              <th>Viewing TV Quant</th>
+              <th>Viewing Console Brand</th>
+              <th>Viewing Console Quant</th>
+            </tr>
+          </thead>
+            <tbody>
+              <td>
+                <input type="text" name="viewingTvBrand" placeholder="Brand">
+              </td>
+              <td>
+                <input type="text" name="viewingTvQuant" placeholder="#">
+              </td>
+              <td>
+                <td>
+                  <input type="text" name="viewingConsoleBrand" placeholder="Brand">
+                </td>
+                <td>
+                  <input type="text" name="viewingConsoleQuant" placeholder="#">
+                </td>
+            </td>
+            </tbody>
+        </table>
+      </fieldset>
+</div>
+  <script>
+  $(document).ready(function () {
+      $(".viewingSystemAvailtext").hide();
+      $("#viewingSystemAvail").click(function () {
+          $(".viewingSystemAvailtext").show();
+      });
+      $("#viewingSystemAvail2").click(function () {
+          $(".viewingSystemAvailtext").hide();
+      });
+  });
+  </script>
+</div>
+<br>
+
+
+
+<br>
+
+    <input class="ui orange basic button" type="SUBMIT">
+
+  </form>
+  <br>
+  <hr>
+  <div class=" ui fluid container">
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Classrooms</h3>
+
+    </div>
+
+</div>
+ <table>
+            <thead>
+                <tr>
+                <th>Campus</th>
+                <th>Buidling</th>
+                <th>Room</th>
+                <th>Capacity</th>
+                <th>360 Classroom View</th>
+                <th>Equipment</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <% eclassrooms.forEach(function(eclassroom) { %>
+                <tr>
+
+
+
+                        <td>  <%= eclassroom.campus %> </td>
+
+
+                        <td>  <%= eclassroom.building %> </td>
+
+                        <td>
+                        <div>
+                        <p><a href="#openModal<%= eclassroom.number %>.1"><%= eclassroom.room%></a></p>
+<div class="modalDialog" id="openModal<%= eclassroom.number %>.1">
+<div><a class="close" href="#close" title="Close">X</a>
+<div>
+<hr>
+<table>
+<thead>
+  <tr>
+    <th>Workstation Info</th>
+  </tr>
+  <tr>
+  <th>Type of Equipment:</th>
+  <th>Quantity:</th>
+  </tr>
+</thead>
+  <tbody>
+  <tr>
+  <td>Monitor:</td>
+  <td><%= eclassroom.monitorQuant %><br></td></tr>
+  <tr><td>Tower:x</td><td> <%= eclassroom.towerQuant %><br></td></tr>
+  <tr><td>Microphone:</td><td> <%= eclassroom.micQuant%><br></td></tr>
+  <tr><td>Keyboard:</td><td> <%= eclassroom.keyboardQuant %><br></td></tr>
+  <tr><td>Mice:</td><td> <%= eclassroom.mouseQuant %> <br></td></tr>
+  </tr>
+  </tbody>
+</table>
+
+
+<hr>
+<table>
+<thead>
+  <tr>
+    <th>Projector Info</th>
+  </tr>
+  <tr>
+  <th>Type of Equipment:</th>
+  <th>Quantity:</th>
+  </tr>
+</thead>
+  <tbody>
+  <tr><td>Projector #:</td><td><%= eclassroom.projQuant %><br></td></tr>
+  <tr><td>Proj. Screen #:</td><td><%= eclassroom.projScreenQuant %><br></td></tr>
+  </tbody>
+</table>
+
+<hr>
+ Document Camera Info
+ #: <%= eclassroom.doccamQuant %></span><br>
+<hr>
+ITV Info: <br>
+       TV #:<%= eclassroom.itvMonitorquant %>
+       Mic #:<%= eclassroom.itvMicquant %></span>
+       Speakers #: <%= eclassroom.itvSpeakerquant %></span>
+       Cam #:<%= eclassroom.itvCameraQuant %></span>
+
+</div>
+</div>
+</div>
+<p>(<%= eclassroom.roomType %>)</p>
+                        </td>
+                        <td>
+                             <%= eclassroom.capacity %>
+                        </td>
+                        <td>
+                            <p><a href="#openModal<%= eclassroom.number %>.2" onclick="document.getElementById('ifr<%= eclassroom.number %>.2').src='<%= eclassroom.firstview %>';">View 1</a></p>
+                            <div class="modalDialog" id="openModal<%= eclassroom.number %>.2">
+                            <div><a class="close" href="#close" title="Close">X</a>
+                            <div><iframe allowfullscreen="" height="530" id="ifr<%= eclassroom.number %>.2" style="border-style: none;" width="730"></iframe></div>
+                            </div>
+                            </div>
+                            <p><a href="#openModal<%= eclassroom.number %>.5" onclick="document.getElementById('ifr<%= eclassroom.number %>.5').src='<%= eclassroom.secondview %>';">View 2</a></p>
+                            <div class="modalDialog" id="openModal<%= eclassroom.number %>.5">
+                            <div><a class="close" href="#close" title="Close">X</a>
+                            <div><iframe allowfullscreen="" height="530" id="ifr<%= eclassroom.number %>.5" style="border-style: none;" width="730"></iframe></div>
+                            </div>
+                            </div>
+                        </td>
+                        <td>
+
+          <span><img height="36" width="36" src="<%= eclassroom.workstationImage %>"></span>
+          <span><img height="36" width="36" src="<%= eclassroom.projectorImage %>"></span>
+            <span><img height="36" width="36" src="<%= eclassroom.cpType %>"></span>
+            <span><img height="36" width="36" src="<%= eclassroom.doccamImage %>"></span>
+            <span><img height="36" width="36" src="<%= eclassroom.microphoneImage %>"></span>
+            <span><img height="36" width="36" src="<%= eclassroom.itvImage %>"></span>
+            <span><img height="36" width="36" src="<%= eclassroom.comlabImage %>"></span>
+            <span><img height="36" width="36" src="<%= eclassroom.printerImage %>"></span>
+            <span><img height="36" width="36" src="<%= eclassroom.smartboardImage %>"></span>
+        </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        </div>
+</div>
+  </div>
+<br>
+<hr>
+ <br>
+    <% include partials/footer %>
